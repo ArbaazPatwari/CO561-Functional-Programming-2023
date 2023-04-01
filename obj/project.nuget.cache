@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "to47IO+vHXEDUGOGI43hQy+gxLfMPhCS2jjtsjJ4GVqErryozqLwSeuPrSr6uiK8bIVhl+UUuvN9CxCA6yMB3w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Arbaaz\\Documents\\GITHUB\\CO561-Functional-Programming-2023\\CO561-Functional-Programming-2023\\CO561-Functional-Programming-2023.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Arbaaz\\.nuget\\packages\\fsharp.core\\7.0.200\\fsharp.core.7.0.200.nupkg.sha512"
+  ],
+  "logs": []
+}
