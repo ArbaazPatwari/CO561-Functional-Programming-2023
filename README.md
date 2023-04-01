@@ -1,2 +1,9 @@
-# CO561-Functional-Programming-2023
- Set of tasks for the functional programming assignment
+# F# Tasks 1 to 4
+
+| Author | Details |
+| ---- | ---- |
+**Name**: | Arbaaz Patwari  |
+**Student ID**: | 22133895 |
+**Course:** | Software Engineering |
+**Module**: | CO561 |
+**Started**: | April 2022 |  
