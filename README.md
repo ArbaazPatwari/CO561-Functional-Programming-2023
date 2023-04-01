@@ -8,5 +8,5 @@
 **Module**: | CO561 |
 **Started**: | April 2022 |  
 
-App 1: Bank Application
+App 1: Bank Application 
 App 2: Seat Booking System
