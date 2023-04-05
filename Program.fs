@@ -3,14 +3,17 @@
 // Task 1
 type Account = {accountNumber : string; mutable balance: float}
                 member this.Print = 
-                    Console.Write(this.accountNumber)
-                    Console.Write(" ")
-                    Console.Write(this.balance)
+                    Console.Write($"Account: {this.accountNumber}")
+                    Console.Write(" | ")
+                    Console.Write($"Balance: {this.balance}")
 
 let starter = {accountNumber = "A1X"; balance = 100}
 
 let Withdraw taken = 
-    starter.balance <- starter.balance - taken
+    if starter.balance < taken then
+        Console.Write("You cannot perform this transaction (balance too low)")
+    else 
+        starter.balance <- starter.balance - taken
 
 //let lowerBalance = Withdraw 10
 
