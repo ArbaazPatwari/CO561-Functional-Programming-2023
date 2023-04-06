@@ -1,4 +1,5 @@
 ﻿open System
+open System.Threading
 
 // Task 1
 type Account = {accountNumber : string; mutable balance: float}
@@ -69,3 +70,29 @@ printfn $"These accounts have more than 50 units:\n {above50List}"
 
 // Task 4
 
+type Ticket = {seat : int; customer : string}
+                member this.Display = 
+                    Console.Write($"Seat: {this.seat}")
+                    Console.Write(" | ")
+                    Console.Write($"Customer: {this.customer}")
+                    
+
+let mutable tickets = [for n in 1..10 -> {Ticket.seat = n; Ticket.customer = ""}]
+
+let TicketPrint x =
+    Console.Write($"\nSeat Number: {x.seat} | ")
+    Console.Write($"Customer name: {x.customer}")
+
+let DisplayTickets x =
+    List.iter TicketPrint tickets
+
+DisplayTickets tickets
+
+let BookSeat y z =
+        Console.Write($"\nPlease enter the name of the ticket holder: ")
+        let y = Console.ReadLine()
+        Console.Write($"Please enter the number of the ticket seat: ")
+        let z = Int32.Parse(Console.ReadLine())
+        Console.Write($"Ticket ready for: {y}, please sit at: {z}")
+
+//BookSeat tickets
