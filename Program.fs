@@ -70,7 +70,7 @@ printfn $"These accounts have more than 50 units:\n {above50List}"
 
 // Task 4
 
-type Ticket = {seat : int; customer : string}
+type Ticket = {mutable seat : int; mutable customer : string}
                 member this.Display = 
                     Console.Write($"Seat: {this.seat}")
                     Console.Write(" | ")
@@ -88,11 +88,18 @@ let DisplayTickets x =
 
 DisplayTickets tickets
 
-let BookSeat y z =
-        Console.Write($"\nPlease enter the name of the ticket holder: ")
-        let y = Console.ReadLine()
-        Console.Write($"Please enter the number of the ticket seat: ")
-        let z = Int32.Parse(Console.ReadLine())
-        Console.Write($"Ticket ready for: {y}, please sit at: {z}")
+let Booking w =
+    Console.Write($"\nPlease enter the name of the ticket holder: ")
+    let y = Console.ReadLine()
+    Console.Write($"Please enter the number of the ticket seat: ")
+    let z = Int32.Parse(Console.ReadLine())
+    w.customer <- y
+    w.seat <- z
+    Console.Write($"Ticket ready for: {w.customer}")
+    Console.Write($"Ticket ready for: {w.seat}")
 
-//BookSeat tickets
+// BookSeat...
+// BookSeat tickets
+
+// Thread
+        
