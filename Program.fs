@@ -88,18 +88,36 @@ let DisplayTickets x =
 
 DisplayTickets tickets
 
-let Booking w =
+let newTicket = {seat = 8; customer = "Marcus"}
+
+let BookSeat seat =
     Console.Write($"\nPlease enter the name of the ticket holder: ")
-    let y = Console.ReadLine()
+    let c = Console.ReadLine()
     Console.Write($"Please enter the number of the ticket seat: ")
-    let z = Int32.Parse(Console.ReadLine())
-    w.customer <- y
-    w.seat <- z
-    Console.Write($"Ticket ready for: {w.customer}")
-    Console.Write($"Ticket ready for: {w.seat}")
+    let n = Int32.Parse(Console.ReadLine())
+    newTicket.customer <- c
+    //lock(c)(fun() -> newTicket.customer <- c) |> ignore
+    newTicket.seat <- n
+    //lock(n)(fun() -> newTicket.seat <- n) |> ignore
+    Console.Write($"Ticket ready for: {newTicket.customer}")
+    Console.Write(" | ")
+    Console.Write($"Seated at: {newTicket.seat}")
 
-// BookSeat...
-// BookSeat tickets
+BookSeat newTicket
 
-// Thread
-        
+Console.Write("\nWould you like to book another seat? Y/N")
+
+let k = Console.ReadLine()
+if k = "Y" || k = "y" then
+    BookSeat newTicket
+elif k = "N" || k = "n" then
+    Console.WriteLine("Booking declined")
+
+(*
+let BookThread() =
+    let thread = new Thread(BookSeat)
+    thread.Start()
+
+BookThread()
+BookThread()
+*)
