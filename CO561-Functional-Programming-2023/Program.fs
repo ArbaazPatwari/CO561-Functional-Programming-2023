@@ -29,7 +29,6 @@ starter.Print
 
 // Task 2
 (* Created a function named CheckAccount and it uses an account as an argument. It produces an output depending on the balance the account has. I made 6 accounts that test some arbitrary values within each band.
-
 *)
 
 Console.Write("\n")
@@ -100,7 +99,7 @@ let DisplayTickets x =
     List.iter TicketPrint tickets
 
 DisplayTickets tickets
-// Could not update a record from the tickets list so I made a new record to test the functionality on
+// BookSeat Function with threading
 let newTicket = {seat = 8; customer = "Marcus"}
 
 let bookingRef = ref 1
