@@ -76,7 +76,11 @@ let above50List = List.filter(fun x -> x.balance >= 50) accounts
 printfn $"These accounts have more than 50 units:\n {above50List}"
 
 // Task 4
-(* I specified this data to generate a list of 10 tickets, however had trouble completing the latter parts of the task. The DisplayTickets() function will print out each ticket that is present in a list (tickets list). This is done through by writing information to the console for a ticket, and iterating through each ticket to print out the information. I added a print member but this was not used. I tried to make BookSeat iterate through a list of tickets and update a record but I couldn't find a way to modify one record. I had to make a new record to implement the capturing of customer name and seat number, and updating that information instead. A simple if else statement lets the user repeat the function. I was also not sure how to implement threading and locking for the third part of the task.
+(* I specified Ticket record and generated list data to iterate through that list and display information on each ticket. I defined a print function TicketPrint that writes the seat number and name of the customer out. I then pass this list to another function DisplayTickets that iterates through a specified list. I then passed the tickets list to the DisplayTickets function to call it.
+
+   I created a BookSeat function that requests the name of a customer and their seat number. It will assign these values to the attributes of a new record which I called newTicket. Since the data is mutable and the function is called again, it is possible to reassign a seat to a new customer in this way. 
+   
+   I created two threads that can both access the BookSeat function. The data is locked with a reference value being evaluated each time the function is run so data can not be overwritten between threads. The current thread is put to sleep for 15 seconds to delay its execution, allowing the system to adjust resource usage.
 *)
 
 type Ticket = {mutable seat : int; mutable customer : string}
