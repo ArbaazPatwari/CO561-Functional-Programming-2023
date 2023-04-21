@@ -99,34 +99,27 @@ DisplayTickets tickets
 // Could not update a record from the tickets list so I made a new record to test the functionality on
 let newTicket = {seat = 8; customer = "Marcus"}
 
-let BookSeat seat =
-    Console.Write($"\nPlease enter the name of the ticket holder: ")
-    let c = Console.ReadLine()
-    Console.Write($"Please enter the number of the ticket seat: ")
-    let n = Int32.Parse(Console.ReadLine())
-    newTicket.customer <- c
-    //lock(c)(fun() -> newTicket.customer <- c) |> ignore
-    newTicket.seat <- n
-    //lock(n)(fun() -> newTicket.seat <- n) |> ignore
-    Console.Write($"Ticket ready for: {newTicket.customer}")
-    Console.Write(" | ")
-    Console.Write($"Seated at: {newTicket.seat}")
+let bookingRef = ref 1
 
-BookSeat newTicket
+let BookSeat s =
+    lock (bookingRef)(fun() ->
+                           if !bookingRef > 0 then
+                            decr bookingRef
+                            Console.Write($"\nPlease enter the name of the ticket holder: ")
+                            let c = Console.ReadLine()
+                            Console.Write($"Please enter the number of the ticket seat: ")
+                            let n = Int32.Parse(Console.ReadLine())
+                            newTicket.customer <- c
+                            newTicket.seat <- n
+                            Console.Write($"Ticket ready for: {newTicket.customer}")
+                            Console.Write(" | ")
+                            Console.Write($"Seated at: {newTicket.seat}\n")
+                            incr bookingRef
+                            else
+                                Console.Write("No seat booked"))
 
-Console.Write("\nWould you like to book another seat? Y/N")
+ThreadPool.QueueUserWorkItem(new WaitCallback(BookSeat)) |> ignore
 
-let k = Console.ReadLine()
-if k = "Y" || k = "y" then
-    BookSeat newTicket
-elif k = "N" || k = "n" then
-    Console.WriteLine("Booking declined")
-// Was not sure how to implement threading and locking for the BookSeat function
-(*
-let BookThread() =
-    let thread = new Thread(BookSeat)
-    thread.Start()
+ThreadPool.QueueUserWorkItem(new WaitCallback(BookSeat)) |> ignore
 
-BookThread()
-BookThread()
-*)
+Thread.Sleep(15000)
